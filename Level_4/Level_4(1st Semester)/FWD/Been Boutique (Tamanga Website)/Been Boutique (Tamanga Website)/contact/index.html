@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Assets/Style/style.css">
+    <link rel="stylesheet" href="../Assets/Style/contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="Assets/Js/script.js" >
+        
+    </script>
+    <title>Bean Boutique - About Us</title>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+
+        <div class="topnav">
+            <div class="logo">
+                <img src="../Assets/Media/Logo/latte-art.png">
+                <span>Bean Boutique</span>
+            </div>
+
+            <div class="hamburger" id="hamburger">
+                <span>&#9776;</span>
+            </div>
+        </div>
+
+        <nav id="nav" class="nav">
+            <a href="../index.html">Home</a>
+            <a href="../about/index.html">About</a>
+            <a href="../services/index.html">Services</a>
+            <a href="../products/index.html">Products</a>
+            <a href="../events/index.html">Events</a>
+            <a href="../announcements/index.html">Announcements</a>
+            <a href="index.html">Contact</a>
+        </nav>
+
+        <div class="signbtn">
+
+            <div class="cart-icon" id="cart-btn">
+                <i class="fa fa-shopping-cart"></i>
+                <span id="cart-count">0</span>
+            </div>
+
+            <button>Place Order</button>
+
+        </div>
+
+    </div>
+</header>
+    <main>
+    <!-- contact section-->
+   <section class="contact-section">
+
+            <h2>Contact Us</h2>
+
+            <div class="contact-details">
+
+                <div class="info">
+                    <h3>Get In Touch</h3>
+                    <p><i class="fa fa-map-marker"></i> 123 Coffee Street</p>
+                    <p><i class="fa fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fa fa-envelope"></i> info@beanboutique.com</p>
+                </div>
+
+                <div class="form">
+                    <form>
+                        <h3>Send Message</h3>
+                        <input type="text" placeholder="Your Name">
+                        <input type="email" placeholder="Your Email">
+                        <textarea placeholder="Your Message"></textarea>
+                        <button type="submit">Send</button>
+
+                        <div class="captcha-box">
+                            <p><strong>Security Check:</strong> Type the code below</p>
+
+                            <div class="captcha-code" id="captcha-code">A7K9P</div>
+
+                            <input type="text" id="captcha-input" placeholder="Enter CAPTCHA" required>
+
+                            <button type="button" onclick="validateCaptcha()">Verify</button>
+
+                            <p id="captcha-result"></p>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+            <section class="map-section">
+                <h2>Our Location</h2>
+
+                <p>Visit Bean Boutique at our main store in town.</p>
+
+                <iframe src="https://www.google.com/maps/embed?pb=YOUR_EMBED_LINK_HERE" height="350"
+                    style="width: 100%; border: 0;" loading="lazy" allowfullscreen="">
+                </iframe>
+            </section>
+
+
+        </section>
+
+<footer>
+    <p>&copy; 2026 Bean Boutique. All rights reserved.</p>
+</footer>
