@@ -63,6 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const checkoutBtnFromCart = document.getElementById("checkout-from-cart");
   const checkoutModal = document.querySelector(".checkout-modal-form");
   const closeCheckout = document.getElementById("closebtn");
+  const newsletterForm = document.querySelector(".newsletter-form");
+  const newsletterMessage = document.getElementById("newsletter-message");
+  const contactForm = document.querySelector(".form form");
+  const contactMessage = document.getElementById("contact-message");
 
   const qtyInput = document.querySelector(
     '.order-info input[placeholder="Quantity"]'
@@ -110,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const cancelCheckoutBtn = document.querySelector(".checkout-modal-form .cancel-btn");
+  const resetCheckoutBtn = document.querySelector(".checkout-modal-form button[type='reset']");
   const checkoutForm = document.querySelector(".checkout-modal-form form");
   const checkoutMessage = document.getElementById("checkout-message");
   const successBox = document.querySelector(".checkout-success");
@@ -117,6 +122,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const captchaInput = document.getElementById("captcha-input");
   const captchaResult = document.getElementById("captcha-result");
   let generatedCaptcha = "";
+
+  function setMessage(element, text, color) {
+    if (!element) return;
+    element.textContent = text;
+    element.style.color = color;
+  }
+
+  function closeCheckoutModal() {
+    if (checkoutModal) {
+      checkoutModal.style.display = "none";
+    }
+    if (checkoutForm) {
+      checkoutForm.reset();
+    }
+    if (successBox) {
+      successBox.classList.remove("show");
+    }
+    if (checkoutMessage) {
+      checkoutMessage.textContent = "";
+    }
+  }
 
   function generateCaptcha() {
     const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -146,11 +172,46 @@ document.addEventListener("DOMContentLoaded", () => {
   generateCaptcha();
 
   if (cancelCheckoutBtn && checkoutModal) {
-    cancelCheckoutBtn.addEventListener("click", () => {
-      checkoutModal.style.display = "none";
-      if (checkoutForm) {
-        checkoutForm.reset();
+    cancelCheckoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      closeCheckoutModal();
+    });
+  }
+
+  if (resetCheckoutBtn && checkoutModal) {
+    resetCheckoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      closeCheckoutModal();
+    });
+  }
+
+  if (closeCheckout && checkoutModal) {
+    closeCheckout.addEventListener("click", () => {
+      closeCheckoutModal();
+    });
+  }
+
+  if (newsletterForm && newsletterMessage) {
+    newsletterForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const emailInput = newsletterForm.querySelector('input[type="email"]');
+
+      if (!emailInput || !emailInput.value.trim() || !emailInput.value.includes("@")) {
+        setMessage(newsletterMessage, "Please enter a valid email.", "red");
+        return;
       }
+
+      setMessage(newsletterMessage, "Thanks for subscribing to Bean Boutique!", "green");
+      newsletterForm.reset();
+    });
+  }
+
+  if (contactForm && contactMessage) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      setMessage(contactMessage, "Your message has been sent.", "green");
+      contactForm.reset();
     });
   }
 
@@ -177,7 +238,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!addressInput || addressInput.value.trim() === "") valid = false;
       if (!phoneInput || phoneInput.value.replace(/\D/g, "").length < 10) valid = false;
       if (!emailInput || !emailInput.value.includes("@") || !emailInput.value.includes(".")) valid = false;
-      if (!captchaInput || captchaInput.value.trim().toUpperCase() !== generatedCaptcha) valid = false;
 
       if (!valid) {
         if (successBox) {
